@@ -6,10 +6,14 @@ import (
     "github.com/gorilla/mux"
     "strconv"
     "fmt"
+    "os"
+    "io/ioutil"
 )
 
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
-    //w.Write([]byte("This is a routing calculator.   It works by blah blah blah blah do this\n"))
+    index, _ := os.Open("index.html")
+    data, _ := ioutil.ReadAll(index)
+    w.Write([]byte(data))
 }
 
 func AddHandler(w http.ResponseWriter, r *http.Request) {
@@ -56,8 +60,7 @@ func main() {
     r := mux.NewRouter()
     fmt.Println("Listening on port 8000\n")
     // Routes consist of a path and a handler function.
-    r.PathPrefix("/").Handler(http.FileServer(http.Dir("./index.html")))
-    http.Handle("/", r)
+    r.HandleFunc("/", IndexHandler)
     r.HandleFunc("/add/{x}/{y}", AddHandler)
     r.HandleFunc("/sub/{x}/{y}", SubHandler)
     r.HandleFunc("/mult/{x}/{y}", MultHandler)
