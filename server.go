@@ -5,6 +5,7 @@ import (
     "log"
     "github.com/gorilla/mux"
     "strconv"
+    "fmt"
 )
 
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
@@ -17,9 +18,8 @@ func AddHandler(w http.ResponseWriter, r *http.Request) {
     xf, _ := strconv.ParseFloat(x, 64)
     yf, _ := strconv.ParseFloat(y, 64)
     ans := strconv.FormatFloat(xf + yf, 'f', -1, 64)
-
-
-    w.Write([]byte(ans))
+    printer := x + " + " + y + " = " + ans + "\nThanks for using our calculator!"
+    w.Write([]byte(printer))
 }
 
 func SubHandler(w http.ResponseWriter, r *http.Request) {
@@ -28,9 +28,8 @@ func SubHandler(w http.ResponseWriter, r *http.Request) {
     xf, _ := strconv.ParseFloat(x, 64)
     yf, _ := strconv.ParseFloat(y, 64)
     ans := strconv.FormatFloat(xf - yf, 'f', -1, 64)
-
-
-    w.Write([]byte(ans))
+    printer := x + " - " + y + " = " + ans + "\nThanks for using our calculator!"
+    w.Write([]byte(printer))
 }
 
 func MultHandler(w http.ResponseWriter, r *http.Request) {
@@ -39,9 +38,8 @@ func MultHandler(w http.ResponseWriter, r *http.Request) {
     xf, _ := strconv.ParseFloat(x, 64)
     yf, _ := strconv.ParseFloat(y, 64)
     ans := strconv.FormatFloat((xf * yf), 'f', -1, 64)
-
-
-    w.Write([]byte(ans))
+    printer := x + " * " + y + " = " + ans + "\nThanks for using our calculator!"
+    w.Write([]byte(printer))
 }
 
 func DivHandler(w http.ResponseWriter, r *http.Request) {
@@ -50,13 +48,13 @@ func DivHandler(w http.ResponseWriter, r *http.Request) {
     xf, _ := strconv.ParseFloat(x, 64)
     yf, _ := strconv.ParseFloat(y, 64)
     ans := strconv.FormatFloat((xf / yf), 'f', -1, 64)
-
-
-    w.Write([]byte(ans))
+    printer := x + " / " + y + " = " + ans + "\nThanks for using our calculator!"
+    w.Write([]byte(printer))
 }
 
 func main() {
     r := mux.NewRouter()
+    fmt.Println("Listening on port 8000\n")
     // Routes consist of a path and a handler function.
     r.HandleFunc("/", IndexHandler)
     r.HandleFunc("/add/{x}/{y}", AddHandler)
