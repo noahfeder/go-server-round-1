@@ -6,10 +6,14 @@ import (
     "github.com/gorilla/mux"
     "strconv"
     "fmt"
+    "os"
+    "io/ioutil"
 )
 
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
-    w.Write([]byte("This is a routing calculator.   It works by blah blah blah blah do this\n"))
+    index, _ := os.Open("index.html")
+    data, _ := ioutil.ReadAll(index)
+    w.Write([]byte(data))
 }
 
 func AddHandler(w http.ResponseWriter, r *http.Request) {
