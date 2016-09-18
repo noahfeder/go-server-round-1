@@ -8,14 +8,32 @@
 </head>
 <body>
   <h1>Welcome to our calculator!</h1>
-  <!--ul>
-    <li>Go to /add/x/y to add numbers</li>
-    <li>Go to /div/x/y to divide numbers</li>
-    <li>Go to /mult/x/y to multiply numbers</li>
-    <li>Go to /sub/x/y to subtract numbers</li>
-  </ul-->
+  <style>
+  input[type="text"], span {
+    display: inline-block;
+    text-align: center;
+  }
+  input[type="text"] {
+    width: 20px;
+  }
+  span {
+    width: 10px;
+  }
+  </style>
   <form action="/add">
-    <input type="text" name="x"> + <input type="text" name="y">
+    <input type="text" name="x"><span> + </span><input type="text" name="y">
+    <input type="submit">
+  </form>
+  <form action="/sub">
+    <input type="text" name="x"><span> - </span><input type="text" name="y">
+    <input type="submit">
+  </form>
+  <form action="/mult">
+    <input type="text" name="x"><span> * </span><input type="text" name="y">
+    <input type="submit">
+  </form>
+  <form action="/div">
+    <input type="text" name="x"><span> / </span><input type="text" name="y">
     <input type="submit">
   </form>
 </body>
