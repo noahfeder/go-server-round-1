@@ -108,27 +108,27 @@ func main() {
 In our code, we assign `NewRouter()` to r and use a handler to match the url, as well as retrieve a `[]byte` from a function.
 
 
-memory management
+### Memory management
 
 go is a low level language, which means we have to do a few things differently than in javascript or any high level language.   One of the most interesting and different things about Go compared to our experience with other languages is memory management.   Whenever you do something in Go, you allocate memory from the heap rather than from the stack.  When we make an array in javascript we write something like
-
+```javascript
 var a = [1,2,3,4,5]
-
+```
 javascript does three things for you when you make that array.   It allocates memory for the array, then uses the memory for the array when you call it.   Then it releases the memory when it isn’t needed anymore. 
 
 
 In Go you need to be a little more verbose.   Here is what an array of numbers looks like in Go:
-
+```go
  b := [5]int{1, 2, 3, 4, 5}
-
+```
 Because Go doesn’t always or have to manage memory for you, in an array you would need to specify the length.    This is to let the program knows how much memory to take from the heap.   Thankfully we don’t have to do this for most things in go.   Go has built in ways to manage memory.   This kind of memory management is just an option and something cool we haven’t seen yet.   Slices will have memory managed for them dynamically, and do the same thing as arrays.
 
 Another cool thing about working with memory from the heap is that you can use pointers!   Here is what a pointer looks like
-
+```go
 a := foo
 
 b := &a
 
 *b = foo
-
+```
 When you set a variable you allocate a space of memory in the heap for that variable.  With a pointer you tell the program to look in that space.   Pointers can have they’re value resigned then along the way.   You can point to really anything in go.
