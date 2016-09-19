@@ -105,4 +105,4 @@ func main() {
 }
 ```
 
-In our code, we assign `NewRouter()` to r and use a handler to match the url, as well as retrieve a `[]byte`, which contains data, from one of our functions.
+In our code, we assign `NewRouter()` to r and use a handler to match the url, as well as retrieve a `[]byte` from a function.
