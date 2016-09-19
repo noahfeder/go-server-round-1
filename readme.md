@@ -86,3 +86,23 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 `http.responseWriter.Write()` appends the given `[]byte` to the response body.
 
 In this example, we don't really "catch" errors, but instead use `panic()` to immediately halt operation if an error is returned. It is the best-named function of all time.
+
+### Using Mux
+Mux is Go package that implements a request router and dispatcher. The method, `Mux.NewRouter()`, matches incoming requests against a list of registered routes and calls a handler for the route that matches the URL or other conditions. This can be seen in the following code:
+
+```Go
+func main() {
+   r := mux.NewRouter()
+   fmt.Println("Listening on port 8000\n")
+   // Routes consist of a path and a handler function.
+   r.HandleFunc("/", IndexHandler)
+   r.HandleFunc("/add", AddHandler)
+   r.HandleFunc("/sub", SubHandler)
+   r.HandleFunc("/mult", MultHandler)
+   r.HandleFunc("/div", DivHandler)
+   //Bind to a port and pass our router in
+   log.Fatal(http.ListenAndServe(":8000", r))
+}
+```
+
+In our code, we assign `NewRouter()` to r and use a handler to match the url, as well as retrieve a `[]byte`, which contains data, from one of our functions.
